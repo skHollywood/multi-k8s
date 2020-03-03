@@ -1,0 +1,8 @@
+FROM node:alpine
+#WORKDIR /
+RUN echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p 
+COPY ./package.json ./
+RUN npm install
+RUN npm i nodemon -g
+COPY . .
+CMD ["npm", "run", "dev"]

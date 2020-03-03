@@ -1,0 +1,12 @@
+FROM node:alpine
+#WORKDIR /
+RUN echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf
+RUN echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf
+RUN echo fs.inotify.max_queued_events=524288 | tee -a /etc/sysctl.conf
+#RUN tee -a /etc/sysctl.conf
+RUN sysctl -p  
+COPY ./package.json ./
+RUN npm install
+RUN npm i nodemon -g
+COPY . .
+CMD ["npm", "run", "dev"]

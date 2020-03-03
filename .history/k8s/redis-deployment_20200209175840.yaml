@@ -1,0 +1,6 @@
+apiVersion: v2
+kind: Deployment
+metadata:
+  - name: redis-deployment
+spec:
+  replicas: 1
